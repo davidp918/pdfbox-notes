@@ -1,0 +1,9 @@
+{
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "c:\\Users\\davidp\\Downloads\\pdfbox-3.0.0-RC1.jar",
+        "c:\\downloads\\jar\\commons-logging-1.2\\commons-logging-1.2.jar",
+        "c:\\downloads\\jar\\commons-logging-1.2\\commons-logging-1.2-javadoc.jar",
+        "c:\\downloads\\jar\\pdfbox-3.0.0-RC1.jar"
+    ]
+}
