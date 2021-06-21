@@ -1,3 +1,6 @@
+import java.util.Map;
+import static java.util.Map.entry;
+
 public class App {
     public static void main(String[] args) throws Exception {
         String fileName = "test";
@@ -7,8 +10,12 @@ public class App {
          * 20.0f, 100.0f }); AddText.addMultipleLineText(fileName, 1,
          * "Sample multiple lines texts texts sample", new Float[] { 100.0f, 700.0f });
          * remove.removePage(fileName, 2); System.out.println(Extract.readText("CAS"));
-         * 
          * System.out.println(Extract.passport("CAS"));
+         * System.out.println(MetaData.get(fileName));
          */
+
+        System.out
+                .println(MetaData.set(fileName, Map.ofEntries(entry("Author", "David"), entry("Title", "test title"))));
+
     }
 }
