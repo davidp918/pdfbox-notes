@@ -1,10 +1,10 @@
 import java.util.Map;
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
-
 import org.apache.pdfbox.Loader;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDDocumentInformation;
@@ -13,29 +13,23 @@ public class MetaData {
     static String[] parameters = { "Author", "Title", "Subject", "Creator", "Keywords", "CreationDate",
             "ModificationDate" };
 
-    public static Boolean set(String fileName, Map<String, Object> info) throws IOException {
+    public static Boolean set(String fileName) throws IOException {
         boolean success = false;
         String path = String.format("pdfs/%s.pdf", fileName);
         File file = new File(path);
         PDDocument doc = Loader.loadPDF(file);
         PDDocumentInformation docInfo = doc.getDocumentInformation();
 
-        try {
-            for (String parameter : parameters) {
-                if (!info.containsKey(parameter))
-                    continue;
-                System.out.println(parameter);
-                Method method = PDDocumentInformation.class.getMethod(String.format("set%s", parameter));
-                method.invoke(docInfo, parameter);
-            }
-            doc.save(file);
-            success = true;
-        } catch (Exception e) {
-            System.out.println(e);
-        } finally {
-            doc.close();
-        }
+        docInfo.setCreator("David");
+        docInfo.setAuthor("David");
+        docInfo.setSubject("set metadata");
+        Calendar date = new GregorianCalendar();
+        docInfo.setCreationDate(date);
+        docInfo.setModificationDate(date);
+        docInfo.setKeywords("Altering, metadata");
+        docInfo.setProducer("David");
 
+        doc.save(path);
         return success;
     }
 
@@ -48,6 +42,7 @@ public class MetaData {
         PDDocumentInformation docInfo = doc.getDocumentInformation();
         for (String parameter : parameters) {
             try {
+                // try retrieving metadata
                 Method method = PDDocumentInformation.class.getMethod(String.format("get%s", parameter));
                 Object object = method.invoke(docInfo);
                 info.put(parameter, object);
