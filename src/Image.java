@@ -4,13 +4,14 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import org.apache.pdfbox.contentstream.PDFStreamEngine;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
 import org.apache.pdfbox.rendering.PDFRenderer;
 
-public class Image {
+public class Image extends PDFStreamEngine {
     public static void insert(String fileName, int pageIndex, String imagePath) throws IOException {
         String path = String.format("pdfs/%s.pdf", fileName);
         File file = new File(path);
@@ -42,6 +43,16 @@ public class Image {
         ImageIO.write(image, "jpg", new File(destination));
 
         doc.close();
+    }
 
+    public static void getLocationAndSize(String fileName) throws IOException {
+        String path = String.format("pdfs/%s.pdf", fileName);
+        File file = new File(path);
+        PDDocument doc = PDDocument.load(file);
+
+        int i = 0;
+        for (PDPage page : doc.getPages()) {
+
+        }
     }
 }
