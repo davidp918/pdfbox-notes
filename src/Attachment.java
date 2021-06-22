@@ -11,8 +11,8 @@ import org.apache.pdfbox.pdmodel.PDEmbeddedFilesNameTreeNode;
 import org.apache.pdfbox.pdmodel.common.filespecification.PDComplexFileSpecification;
 import org.apache.pdfbox.pdmodel.common.filespecification.PDEmbeddedFile;
 
-public class Attachments {
-    public static void set(String fileName) {
+public class Attachment {
+    public static void add(String fileName) {
         String path = String.format("pdfs/%s.pdf", fileName);
         File file = new File(path);
         try {

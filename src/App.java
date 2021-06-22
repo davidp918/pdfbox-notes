@@ -12,7 +12,7 @@ public class App {
          * System.out.println(MetaData.set(fileName));
          * System.out.println(MetaData.get(fileName));
          */
-        Attachments.set(fileName);
-        System.out.println(Attachments.get(fileName));
+        Attachment.add(fileName);
+        System.out.println(Attachment.get(fileName));
     }
 }

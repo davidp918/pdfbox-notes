@@ -1,14 +1,18 @@
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
+import org.apache.pdfbox.text.PDFTextStripper;
 
-public class AddText {
-    public static void addOneLineText(String fileName, int pageIndex, String text, Float[] coordinate)
-            throws IOException {
+public class Text {
+    public static void addOneLine(String fileName, int pageIndex, String text, Float[] coordinate) throws IOException {
         String path = String.format("pdfs/%s.pdf", fileName);
         File file = new File(path);
         PDDocument doc = PDDocument.load(file);
@@ -29,7 +33,7 @@ public class AddText {
         doc.close(); // dispose
     }
 
-    public static void addMultipleLineText(String fileName, int pageIndex, String text, Float[] coordinate)
+    public static void addMultipleLine(String fileName, int pageIndex, String text, Float[] coordinate)
             throws IOException {
         String path = String.format("pdfs/%s.pdf", fileName);
         File file = new File(path);
@@ -54,5 +58,38 @@ public class AddText {
 
         doc.save(path); // default saveing to the top directory of the project
         doc.close(); // dispose
+    }
+
+    public static String extractText(String fileName) throws IOException {
+        String path = String.format("pdfs/%s.pdf", fileName);
+        File file = new File(path);
+        PDDocument doc = PDDocument.load(file);
+
+        // used to retrieve text from pdf
+        PDFTextStripper pdfStripper = new PDFTextStripper();
+        String text = pdfStripper.getText(doc);
+
+        doc.close();
+        return text;
+    }
+
+    public static List<String> extractPassport(String fileName) throws IOException {
+        String path = String.format("pdfs/%s.pdf", fileName);
+        File file = new File(path);
+        PDDocument doc = PDDocument.load(file);
+
+        StringBuilder sBuilder = new StringBuilder();
+        PDFTextStripper stripper = new PDFTextStripper();
+
+        sBuilder.append(stripper.getText(doc));
+        // . - any, \\d - digit
+        Pattern pattern = Pattern.compile("..\\d\\d\\d\\d\\d\\d\\d");
+        Matcher matcher = pattern.matcher(sBuilder);
+        List<String> res = new ArrayList<String>();
+        while (matcher.find())
+            res.add(matcher.group());
+
+        doc.close();
+        return res;
     }
 }
