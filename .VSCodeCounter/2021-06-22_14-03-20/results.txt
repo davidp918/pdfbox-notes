@@ -1,0 +1,40 @@
+Date : 2021-06-22 14:03:20
+Directory : c:\Users\davidp\Documents\GitHub\pdfbox notes
+Total : 12 files,  2536 codes, 32 comments, 93 blanks, all 2661 lines
+
+Languages
++----------+------------+------------+------------+------------+------------+
+| language | files      | code       | comment    | blank      | total      |
++----------+------------+------------+------------+------------+------------+
+| PDF      |          4 |      2,275 |          0 |         27 |      2,302 |
+| Java     |          7 |        253 |         32 |         59 |        344 |
+| Markdown |          1 |          8 |          0 |          7 |         15 |
++----------+------------+------------+------------+------------+------------+
+
+Directories
++-------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                              | files      | code       | comment    | blank      | total      |
++-------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                 |         12 |      2,536 |         32 |         93 |      2,661 |
+| pdfs                                                              |          4 |      2,275 |          0 |         27 |      2,302 |
+| src                                                               |          7 |        253 |         32 |         59 |        344 |
++-------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++-------------------------------------------------------------------+----------+------------+------------+------------+------------+
+| filename                                                          | language | code       | comment    | blank      | total      |
++-------------------------------------------------------------------+----------+------------+------------+------------+------------+
+| c:\Users\davidp\Documents\GitHub\pdfbox notes\README.md           | Markdown |          8 |          0 |          7 |         15 |
+| c:\Users\davidp\Documents\GitHub\pdfbox notes\pdfs\CAS.pdf        | PDF      |        749 |          0 |         11 |        760 |
+| c:\Users\davidp\Documents\GitHub\pdfbox notes\pdfs\document.pdf   | PDF      |      1,364 |          0 |         14 |      1,378 |
+| c:\Users\davidp\Documents\GitHub\pdfbox notes\pdfs\test.pdf       | PDF      |         54 |          0 |          1 |         55 |
+| c:\Users\davidp\Documents\GitHub\pdfbox notes\pdfs\tet.pdf        | PDF      |        108 |          0 |          1 |        109 |
+| c:\Users\davidp\Documents\GitHub\pdfbox notes\src\App.java        | Java     |          8 |         10 |          4 |         22 |
+| c:\Users\davidp\Documents\GitHub\pdfbox notes\src\Attachment.java | Java     |         48 |          6 |         10 |         64 |
+| c:\Users\davidp\Documents\GitHub\pdfbox notes\src\Image.java      | Java     |         32 |          6 |         10 |         48 |
+| c:\Users\davidp\Documents\GitHub\pdfbox notes\src\Init.java       | Java     |         16 |          1 |          5 |         22 |
+| c:\Users\davidp\Documents\GitHub\pdfbox notes\src\MetaData.java   | Java     |         49 |          1 |          8 |         58 |
+| c:\Users\davidp\Documents\GitHub\pdfbox notes\src\Page.java       | Java     |         27 |          0 |          8 |         35 |
+| c:\Users\davidp\Documents\GitHub\pdfbox notes\src\Text.java       | Java     |         73 |          8 |         14 |         95 |
+| Total                                                             |          |      2,536 |         32 |         93 |      2,661 |
++-------------------------------------------------------------------+----------+------------+------------+------------+------------+

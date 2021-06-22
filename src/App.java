@@ -13,5 +13,9 @@ public class App {
          * System.out.println(MetaData.get(fileName)); Attachment.add(fileName);
          * System.out.println(Attachment.get(fileName));
          */
+
+        Image.insert(fileName, 2, "C:/Users/davidp/Pictures/banner.jpg");
+        Image.extract(fileName, 2, "pdfs/extractedImage.jpg");
+
     }
 }

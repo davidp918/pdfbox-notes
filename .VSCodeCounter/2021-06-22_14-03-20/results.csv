@@ -1,0 +1,14 @@
+"filename", "language", "Java", "PDF", "Markdown", "comment", "blank", "total"
+"c:\Users\davidp\Documents\GitHub\pdfbox notes\README.md", "Markdown", 0, 0, 8, 0, 7, 15
+"c:\Users\davidp\Documents\GitHub\pdfbox notes\pdfs\CAS.pdf", "PDF", 0, 749, 0, 0, 11, 760
+"c:\Users\davidp\Documents\GitHub\pdfbox notes\pdfs\document.pdf", "PDF", 0, 1364, 0, 0, 14, 1378
+"c:\Users\davidp\Documents\GitHub\pdfbox notes\pdfs\test.pdf", "PDF", 0, 54, 0, 0, 1, 55
+"c:\Users\davidp\Documents\GitHub\pdfbox notes\pdfs\tet.pdf", "PDF", 0, 108, 0, 0, 1, 109
+"c:\Users\davidp\Documents\GitHub\pdfbox notes\src\App.java", "Java", 8, 0, 0, 10, 4, 22
+"c:\Users\davidp\Documents\GitHub\pdfbox notes\src\Attachment.java", "Java", 48, 0, 0, 6, 10, 64
+"c:\Users\davidp\Documents\GitHub\pdfbox notes\src\Image.java", "Java", 32, 0, 0, 6, 10, 48
+"c:\Users\davidp\Documents\GitHub\pdfbox notes\src\Init.java", "Java", 16, 0, 0, 1, 5, 22
+"c:\Users\davidp\Documents\GitHub\pdfbox notes\src\MetaData.java", "Java", 49, 0, 0, 1, 8, 58
+"c:\Users\davidp\Documents\GitHub\pdfbox notes\src\Page.java", "Java", 27, 0, 0, 0, 8, 35
+"c:\Users\davidp\Documents\GitHub\pdfbox notes\src\Text.java", "Java", 73, 0, 0, 8, 14, 95
+"Total", "-", 253, 2275, 8, 32, 93, 2661
