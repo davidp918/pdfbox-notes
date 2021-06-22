@@ -3,14 +3,10 @@ import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
 
-import javax.swing.text.Document;
-
-import org.apache.pdfbox.io.MemoryUsageSetting;
 import org.apache.pdfbox.multipdf.PDFMergerUtility;
 import org.apache.pdfbox.multipdf.Splitter;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
-import org.apache.pdfbox.tools.PDFMerger;
 
 public class Page {
     public static void remove(String fileName, int index) throws IOException {
