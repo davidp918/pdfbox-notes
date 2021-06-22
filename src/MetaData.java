@@ -5,7 +5,6 @@ import java.lang.reflect.Method;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
-import org.apache.pdfbox.Loader;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDDocumentInformation;
 
@@ -17,7 +16,7 @@ public class MetaData {
         boolean success = false;
         String path = String.format("pdfs/%s.pdf", fileName);
         File file = new File(path);
-        PDDocument doc = Loader.loadPDF(file);
+        PDDocument doc = PDDocument.load(file);
         PDDocumentInformation docInfo = doc.getDocumentInformation();
 
         docInfo.setCreator("David");
@@ -38,7 +37,7 @@ public class MetaData {
         Map<String, Object> info = new HashMap<String, Object>();
         String path = String.format("pdfs/%s.pdf", fileName);
         File file = new File(path);
-        PDDocument doc = Loader.loadPDF(file);
+        PDDocument doc = PDDocument.load(file);
 
         PDDocumentInformation docInfo = doc.getDocumentInformation();
         for (String parameter : parameters) {

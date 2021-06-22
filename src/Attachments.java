@@ -1,13 +1,10 @@
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
+import java.util.GregorianCalendar;
 import java.util.Map;
-import java.util.spi.CalendarNameProvider;
 
-import org.apache.pdfbox.Loader;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDDocumentNameDictionary;
 import org.apache.pdfbox.pdmodel.PDEmbeddedFilesNameTreeNode;
@@ -15,57 +12,52 @@ import org.apache.pdfbox.pdmodel.common.filespecification.PDComplexFileSpecifica
 import org.apache.pdfbox.pdmodel.common.filespecification.PDEmbeddedFile;
 
 public class Attachments {
-    public static void set(String fileName) throws IOException {
+    public static void set(String fileName) {
         String path = String.format("pdfs/%s.pdf", fileName);
         File file = new File(path);
-        PDDocument doc = Loader.loadPDF(file);
-        // attachments are stored in the dictionary as names
-        PDDocumentNameDictionary dictionary = new PDDocumentNameDictionary(doc.getDocumentCatalog());
-        // create the file and add it to the document
-        PDEmbeddedFilesNameTreeNode dummyNodes = createDummy(doc);
-        dictionary.setEmbeddedFiles(dummyNodes);
-        doc.getDocumentCatalog().setNames(dictionary);
+        try {
+            PDDocument doc = PDDocument.load(file);
 
-        doc.save(path);
-        doc.close();
+            // First, create a dummy byte file
+            byte[] data = "Dummy content file data information purpose dummy file data".getBytes();
+            ByteArrayInputStream byteFile = new ByteArrayInputStream(data);
+            // create the embedded file and set some attributes
+            PDEmbeddedFile embeddedFile = new PDEmbeddedFile(doc, byteFile);
+            embeddedFile.setSubtype("test/plain");
+            embeddedFile.setSize(data.length);
+            embeddedFile.setCreationDate(new GregorianCalendar());
+            // create the file specification, which holds the embedded file
+            PDComplexFileSpecification fileSpecification = new PDComplexFileSpecification();
+            fileSpecification.setFile("dummy.txt");
+            fileSpecification.setEmbeddedFile(embeddedFile);
+
+            // Next, create a map where: key -> name, value -> specification
+            Map<String, PDComplexFileSpecification> map = Collections.singletonMap("Dummy", fileSpecification);
+            // and add the map to a tree node
+            PDEmbeddedFilesNameTreeNode embeddedFilesNameTreeNode = new PDEmbeddedFilesNameTreeNode();
+            embeddedFilesNameTreeNode.setNames(map);
+
+            // store the attachment as part of the *Names directory in the document catalog
+            PDDocumentNameDictionary nameDictionary = new PDDocumentNameDictionary(doc.getDocumentCatalog());
+            nameDictionary.setEmbeddedFiles(embeddedFilesNameTreeNode);
+            doc.getDocumentCatalog().setNames(nameDictionary);
+
+            doc.save(path);
+            doc.close();
+        } catch (Exception exception) {
+            System.out.println(exception);
+        }
     }
 
     public static Map<String, PDComplexFileSpecification> get(String fileName) throws IOException {
         String path = String.format("pdfs/%s.pdf", fileName);
         File file = new File(path);
-        PDDocument doc = Loader.loadPDF(file);
+        PDDocument doc = PDDocument.load(file);
 
-        // print out all the files
         PDDocumentNameDictionary dictionary = new PDDocumentNameDictionary(doc.getDocumentCatalog());
         PDEmbeddedFilesNameTreeNode treeNode = dictionary.getEmbeddedFiles();
-        Map<String, PDComplexFileSpecification> fileNames = treeNode.getNames();
+        Map<String, PDComplexFileSpecification> map = treeNode.getNames();
 
-        return fileNames;
-    }
-
-    private static PDEmbeddedFilesNameTreeNode createDummy(PDDocument doc) throws IOException {
-        // creating a dummy file to add
-        byte[] data = "Dummy content file data information context file example purpose dummy file data".getBytes();
-        ByteArrayInputStream fileStream = new ByteArrayInputStream(data);
-        // instantiate the embedded file using the dummy file stream, specifying the
-        // target doc
-        PDEmbeddedFile embeddedFile = new PDEmbeddedFile(doc, fileStream);
-        embeddedFile.setSize(data.length);
-        embeddedFile.setSubtype("text/plain");
-        // add the file to a new specification
-        PDComplexFileSpecification newComplexFileSpecification = new PDComplexFileSpecification();
-        newComplexFileSpecification.setEmbeddedFile(embeddedFile);
-        // add the new specification to a new node
-        PDEmbeddedFilesNameTreeNode newChildNode = new PDEmbeddedFilesNameTreeNode();
-        newChildNode.setNames(Collections.singletonMap("Dummy file", newComplexFileSpecification));
-        // add the node to a list of nodes
-        List<PDEmbeddedFilesNameTreeNode> listChildNodes = new ArrayList<PDEmbeddedFilesNameTreeNode>();
-        listChildNodes.add(newChildNode);
-        // add the list of child nodes to a tree as its kids
-        PDEmbeddedFilesNameTreeNode treeNode = new PDEmbeddedFilesNameTreeNode();
-        treeNode.setKids(listChildNodes);
-
-        return treeNode;
-
+        return map;
     }
 }

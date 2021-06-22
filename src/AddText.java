@@ -1,7 +1,6 @@
 import java.io.File;
 import java.io.IOException;
 
-import org.apache.pdfbox.Loader;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
@@ -12,7 +11,7 @@ public class AddText {
             throws IOException {
         String path = String.format("pdfs/%s.pdf", fileName);
         File file = new File(path);
-        PDDocument doc = Loader.loadPDF(file);
+        PDDocument doc = PDDocument.load(file);
         PDPage page = doc.getPage(pageIndex);
 
         // content stream is for inserting data to the *page of the *doc
@@ -34,7 +33,7 @@ public class AddText {
             throws IOException {
         String path = String.format("pdfs/%s.pdf", fileName);
         File file = new File(path);
-        PDDocument doc = Loader.loadPDF(file);
+        PDDocument doc = PDDocument.load(file);
         PDPage page = doc.getPage(pageIndex);
 
         // content stream is for inserting data to the *page of the *doc

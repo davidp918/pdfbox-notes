@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.apache.pdfbox.Loader;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
 
@@ -13,7 +12,7 @@ public class Extract {
     public static String text(String fileName) throws IOException {
         String path = String.format("pdfs/%s.pdf", fileName);
         File file = new File(path);
-        PDDocument doc = Loader.loadPDF(file);
+        PDDocument doc = PDDocument.load(file);
 
         // used to retrieve text from pdf
         PDFTextStripper pdfStripper = new PDFTextStripper();
@@ -26,7 +25,7 @@ public class Extract {
     public static List<String> passport(String fileName) throws IOException {
         String path = String.format("pdfs/%s.pdf", fileName);
         File file = new File(path);
-        PDDocument doc = Loader.loadPDF(file);
+        PDDocument doc = PDDocument.load(file);
 
         StringBuilder sBuilder = new StringBuilder();
         PDFTextStripper stripper = new PDFTextStripper();
