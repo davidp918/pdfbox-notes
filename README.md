@@ -11,4 +11,25 @@ The workspace contains two main folders, where:
 
 ## Break down
 
-The `JAVA DEPENDENCIES` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-pack/blob/master/release-notes/v0.9.0.md#work-with-jar-files-directly).
+* #### Initialization
+  * `create` - create a pdf file
+* #### Page
+  * `add` - add a number of pages
+  * `remove` - remove a desired page
+  * `split` - split pages of a pdf into seperated files
+  * `merge` - merge multiple pdfs into one
+* #### Text
+  * `addOneLine` - add a single line text
+  * `addMultipleLine` - add texts of multiple lines
+  * `extract` - extract all texts from a pdf
+  * `extractPassport` - example of extracting desired information using regex
+* #### Attachment
+  * `add` - add an attachment to the pdf
+  * `get` - retrieve all the attachments of the pdf
+* #### MetaData
+  * `set` - set metadata
+  * `get` - get metadata
+* #### Image
+  * `insert` - insert an image to a specific page
+  * `extract` - extract the images of a specific page
+  * `getLocationsAndSize` - get the locations and sizes of all the images present in the pdf   
