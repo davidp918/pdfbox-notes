@@ -1,6 +1,6 @@
-## Getting Started
+## About
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+Notes of Java pdfbox with comments and interpretations, involving pdf manipulations such as creation, text formation, page removal, file/attachment insertion, content extraction, metadata operation, and more.
 
 ## Folder Structure
 
