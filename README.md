@@ -1,13 +1,13 @@
-## About
+## Java pdfbox notes
 
 Notes of Java pdfbox with comments and interpretations, involving pdf manipulations such as creation, text formation, page removal, file/attachment insertion, content extraction, metadata operation, and more.
 
 ## Folder Structure
 
-The workspace contains two folders by default, where:
+The workspace contains two main folders, where:
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
+- `src`: the folder to maintain source code
+- `pdfs`: the folder to save pdf files
 
 ## Dependency Management
 
