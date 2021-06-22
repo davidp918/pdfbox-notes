@@ -41,7 +41,8 @@ public class AddText {
         PDPageContentStream contentStream = new PDPageContentStream(doc, page, PDPageContentStream.AppendMode.OVERWRITE,
                 true);
         contentStream.beginText();
-        contentStream.setFont(PDType1Font.TIMES_BOLD_ITALIC, 14);
+        // set text font
+        contentStream.setFont(PDType1Font.COURIER_BOLD_OBLIQUE, 14);
         // set xy pos coordinate from bottom left
         contentStream.newLineAtOffset(coordinate[0], coordinate[1]);
         // set space between lines vertically
@@ -52,7 +53,7 @@ public class AddText {
         contentStream.endText(); // end the text
         contentStream.close(); // closing the stream
 
-        doc.save(file); // default saveing to the top directory of the project
+        doc.save(path); // default saveing to the top directory of the project
         doc.close(); // dispose
     }
 }

@@ -30,6 +30,7 @@ public class MetaData {
         docInfo.setProducer("David");
 
         doc.save(path);
+        doc.close();
         return success;
     }
 

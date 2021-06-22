@@ -14,7 +14,7 @@ public class remove {
         if (index < pageCount)
             doc.removePage(index);
 
-        doc.save(file);
+        doc.save(path);
         doc.close();
 
     }
