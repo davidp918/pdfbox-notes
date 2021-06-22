@@ -5,9 +5,12 @@ import java.util.List;
 
 import javax.swing.text.Document;
 
+import org.apache.pdfbox.io.MemoryUsageSetting;
+import org.apache.pdfbox.multipdf.PDFMergerUtility;
 import org.apache.pdfbox.multipdf.Splitter;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.tools.PDFMerger;
 
 public class Page {
     public static void remove(String fileName, int index) throws IOException {
@@ -56,6 +59,17 @@ public class Page {
         doc.close();
     }
 
-    public static void merge(String[] fileNames) throws IOException {
+    public static void merge(String[] sourceFileNames, String destinatedFileName) throws IOException {
+        PDFMergerUtility merger = new PDFMergerUtility();
+        // set merged file destination
+        merger.setDestinationFileName("pdfs/" + destinatedFileName + ".pdf");
+        // add source files
+        for (String fileName : sourceFileNames) {
+            String path = String.format("pdfs/%s.pdf", fileName);
+            File file = new File(path);
+            merger.addSource(file);
+        }
+        // perform merge, null defaults to -> MemoryUsageSetting.setupMainMemoryOnly()
+        merger.mergeDocuments(null);
     }
 }

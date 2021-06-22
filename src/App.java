@@ -17,5 +17,7 @@ public class App {
          * Page.split(fileName);
          */
 
+        Page.merge(new String[] { "document", "pdfdoc" }, "merged");
+
     }
 }
