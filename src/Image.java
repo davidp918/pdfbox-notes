@@ -86,20 +86,16 @@ public class Image extends PDFStreamEngine {
                 // position of image in the PDF in terms of user space units
                 System.out.println("position in PDF = " + ctmNew.getTranslateX() + ", " + ctmNew.getTranslateY()
                         + " in user space units");
-
                 // raw size in pixels
                 System.out.println("raw image size  = " + imageWidth + ",  " + imageHeight + " in pixels");
-
                 // displayed size in user space units
                 System.out.println("displayed size  = " + imageXScale + ",  " + imageYScale + " in user space units");
-
             } else if (xobject instanceof PDFormXObject) {
                 PDFormXObject form = (PDFormXObject) xobject;
                 showForm(form);
             }
-        } else {
-            super.processOperator(operator, operands);
         }
+        super.processOperator(operator, operands);
     }
 
     public static void getLocationsAndSize() throws IOException {
@@ -107,9 +103,11 @@ public class Image extends PDFStreamEngine {
         File file = new File(path);
         PDDocument doc = PDDocument.load(file);
 
-        Image printer = new Image();
+        // instantiating and calling itself, accessing the extended methods from
+        // PDFStreamEngine
+        Image self = new Image();
         for (PDPage page : doc.getPages())
-            printer.processPage(page);
+            self.processPage(page);
 
         doc.close();
     }
