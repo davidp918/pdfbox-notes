@@ -1,7 +1,7 @@
 public class App {
     public static void main(String[] args) throws Exception {
         String fileName = "document";
-        Init.create(fileName, 4);
+        // Init.create(fileName, 4);
 
         /*
          * * Text.addOneLine(fileName, 0, "Sample one line text", new Float[] { 20.0f,
@@ -12,10 +12,12 @@ public class App {
          * System.out.println(MetaData.set(fileName));
          * System.out.println(MetaData.get(fileName)); Attachment.add(fileName);
          * System.out.println(Attachment.get(fileName));
+         * 
+         * 
+         * Image.insert(fileName, 2, "C:/Users/davidp/Pictures/banner.jpg");
+         * Image.extract(fileName, 2, "pdfs/extractedImage.jpg");
          */
 
-        Image.insert(fileName, 2, "C:/Users/davidp/Pictures/banner.jpg");
-        Image.extract(fileName, 2, "pdfs/extractedImage.jpg");
-
+        Image.getLocationsAndSize();
     }
 }
