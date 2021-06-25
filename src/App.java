@@ -14,10 +14,9 @@ public class App {
          * System.out.println(Attachment.get(fileName)); Image.insert(fileName, 2,
          * "C:/Users/davidp/Pictures/banner.jpg"); Image.extract(fileName, 2,
          * "pdfs/extractedImage.jpg"); Image.getLocationsAndSize();
-         * Page.split(fileName);
+         * Page.split(fileName); Page.merge(new String[] { "document", "pdfdoc" },
+         * "merged"); Security.addWatermark("CAS", "Watermark");
+         * Security.encrypte("CAS", "ownerPassword", "userPassword");
          */
-
-        Page.merge(new String[] { "document", "pdfdoc" }, "merged");
-
     }
 }

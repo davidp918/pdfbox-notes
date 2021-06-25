@@ -12,6 +12,13 @@
         "c:\\downloads\\Jars\\xmpbox-3.0.0-RC1.jar",
         "c:\\downloads\\Jars\\commons-logging-1.2.jar",
         "c:\\downloads\\Jars\\commons-logging-1.2-javadoc.jar",
-        "c:\\downloads\\Jars\\pdfbox-2.0.24.jar"
+        "c:\\downloads\\Jars\\pdfbox-2.0.24.jar",
+        "c:\\Users\\davidp\\Documents\\WeChat Files\\wxid_zv5m7fqq9bdv12\\FileStorage\\File\\2021-06\\pdfsign\\pdfsign\\lib\\bcmail-jdk15on-158.jar",
+        "c:\\Users\\davidp\\Documents\\WeChat Files\\wxid_zv5m7fqq9bdv12\\FileStorage\\File\\2021-06\\pdfsign\\pdfsign\\lib\\bcpkix-jdk15on-158.jar",
+        "c:\\Users\\davidp\\Documents\\WeChat Files\\wxid_zv5m7fqq9bdv12\\FileStorage\\File\\2021-06\\pdfsign\\pdfsign\\lib\\bcprov-jdk15on-158.jar",
+        "c:\\Users\\davidp\\Documents\\WeChat Files\\wxid_zv5m7fqq9bdv12\\FileStorage\\File\\2021-06\\pdfsign\\pdfsign\\lib\\itextpdf-5.5.10.jar",
+        "c:\\Users\\davidp\\Documents\\WeChat Files\\wxid_zv5m7fqq9bdv12\\FileStorage\\File\\2021-06\\pdfsign\\pdfsign\\lib\\itextpdf-5.5.10-javadoc.jar",
+        "c:\\Users\\davidp\\Documents\\WeChat Files\\wxid_zv5m7fqq9bdv12\\FileStorage\\File\\2021-06\\pdfsign\\pdfsign\\lib\\itextpdf-5.5.10-sources.jar",
+        "c:\\Users\\davidp\\Documents\\WeChat Files\\wxid_zv5m7fqq9bdv12\\FileStorage\\File\\2021-06\\pdfsign\\pdfsign\\lib\\pdfbox-app-2.0.7.jar"
     ]
 }
