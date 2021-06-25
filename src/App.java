@@ -17,6 +17,12 @@ public class App {
          * Page.split(fileName); Page.merge(new String[] { "document", "pdfdoc" },
          * "merged"); Security.addWatermark("CAS", "Watermark");
          * Security.encrypte("CAS", "ownerPassword", "userPassword");
+         * 
+         * 
+         * Security.sign("CAS", "CAS_signed", "sample_keystore.p12", "123", "demo use",
+         * "xps", "sample_seal.png");
          */
+
+        Security.crossPageSeal("CAS", "sample_seal.png");
     }
 }

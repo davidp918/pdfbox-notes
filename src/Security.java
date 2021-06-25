@@ -1,7 +1,13 @@
 import java.io.IOException;
-
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
+
+import javax.imageio.ImageIO;
+
+import java.awt.image.BufferedImage;
 
 import org.apache.pdfbox.multipdf.Overlay;
 import org.apache.pdfbox.pdmodel.PDDocument;
@@ -11,8 +17,13 @@ import org.apache.pdfbox.pdmodel.encryption.AccessPermission;
 import org.apache.pdfbox.pdmodel.encryption.StandardProtectionPolicy;
 import org.apache.pdfbox.pdmodel.font.PDFont;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
+import org.apache.pdfbox.pdmodel.graphics.image.LosslessFactory;
+import org.apache.pdfbox.pdmodel.graphics.image.PDImage;
+import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
 import org.apache.pdfbox.pdmodel.graphics.state.PDExtendedGraphicsState;
 import org.apache.pdfbox.util.Matrix;
+
+import itext.PdfSignItext;
 
 public class Security {
     /**
@@ -74,7 +85,54 @@ public class Security {
         doc.close();
     }
 
-    public static void sign(String fileName) throws IOException {
+    /**
+     * Used third party package to achieve digital certificate signing
+     * 
+     * @param source
+     * @param destination
+     * @param KEYSTORE
+     * @param PASSWORD
+     * @param reason
+     * @param location
+     * @param chapterPath
+     * @throws Exception
+     */
+    public static void sign(String source, String destination, String KEYSTORE, String PASSWORD, String reason,
+            String location, String chapterPath) throws Exception {
+        source = "pdfs/" + source + ".pdf";
+        destination = "pdfs/" + destination + ".pdf";
+        PdfSignItext.sign(new FileInputStream(source), new FileOutputStream(destination), new FileInputStream(KEYSTORE),
+                PASSWORD.toCharArray(), reason, location, chapterPath);
+    }
+
+    public static void crossPageSeal(String fileName, String seal) throws IOException {
+        String path = String.format("pdfs/%s.pdf", fileName);
+        File file = new File(path);
+        PDDocument doc = PDDocument.load(file);
+        int pageCount = doc.getNumberOfPages();
+
+        // cut original seal into equally wide sub-seals
+        BufferedImage image = ImageIO.read(new File(seal));
+        float sealHeight = image.getHeight();
+        float sealWidth = image.getWidth();
+        float sliceWidth = sealWidth / pageCount;
+
+        for (int i = 0; i < pageCount; i++) {
+            BufferedImage curSubSeal = image.getSubimage((int) ((i + 1) * sliceWidth), 0, (int) sliceWidth,
+                    (int) sealHeight);
+            PDPage curPage = doc.getPage(i);
+            float tx = curPage.getMediaBox().getWidth() - sealWidth;
+            float ty = (curPage.getMediaBox().getHeight() - sealHeight) / 2;
+
+            PDImageXObject imageXObject = LosslessFactory.createFromImage(doc, curSubSeal);
+            PDPageContentStream contentStream = new PDPageContentStream(doc, curPage);
+            contentStream.drawImage(imageXObject, tx, ty);
+
+            contentStream.close();
+        }
+
+        doc.save("pdfs/" + fileName + "_cross_seal.pdf");
+        doc.close();
 
     }
 
